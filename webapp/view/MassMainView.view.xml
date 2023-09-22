@@ -1,0 +1,12 @@
+<mvc:View
+    controllerName="com.sd.massmaint.parker.zsdmassmaint.controller.MassMainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell>
+        <App id="idApp">
+            
+        </App>
+    </Shell>
+</mvc:View>
