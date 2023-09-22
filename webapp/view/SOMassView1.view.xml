@@ -1,0 +1,51 @@
+<mvc:View
+    controllerName="com.sd.massmaint.parker.zsdmassmaint.controller.SOMassView1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page title="{i18n>title}">
+        <content>                	   	   
+    	<VBox>            
+			<FlexBox alignItems="Start"
+			         justifyContent="Center">
+                <GenericTile id="idMassSO" class="sapUiLargeMargin sapUiTinyMarginTop tileLayout" header="Mass Maintenance Sales Orders"
+                             subheader="Create / Change" press="onPressMassSO">
+                    <TileContent footer="Click on this Tile">
+                        <ImageContent src="sap-icon://my-sales-order" />
+                    </TileContent>
+                </GenericTile>
+                <GenericTile id="idMassCM" class="sapUiLargeMargin sapUiTinyMarginTop tileLayout" visible="false" header="Credit Memo Requests"
+                    subheader="Create / Change" press="onPressMassCM">
+                    <TileContent footer="Click on this Tile">
+                        <ImageContent src="sap-icon://credit-card" />
+                    </TileContent>
+                </GenericTile>				
+			</FlexBox>		
+        </VBox>
+        <VBox>
+        <FlexBox alignItems="Start"
+			         justifyContent="Center">
+        <GenericTile id="idSOCreate" class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Sales Orders - Mass Create"
+                subheader="Click here for Mass Create" press="onPressSOCreate" frameType= "TwoByHalf" visible="false">
+                <TileContent />
+        </GenericTile>
+        <GenericTile id="idSOChange" class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Sales Order - Mass Change"
+                subheader="Click here for Mass Change" press="onPressSOChange" frameType= "TwoByHalf" visible="false">
+                <TileContent />
+        </GenericTile> 
+        <GenericTile id="idCMCreate" class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Credit memo - Mass Create"
+                subheader="Click here for Mass Create" press="onPressCMCreate" frameType= "TwoByHalf" visible="false">
+                <TileContent />
+        </GenericTile>
+        <GenericTile id="idCMChange" class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Credit memo - Mass Change "
+                subheader="Click here for Mass Change" press="onPressCMChange" frameType= "TwoByHalf" visible="false">
+                <TileContent />
+        </GenericTile> 
+        <Button id="idCancelButt" class="sapUiLargeMargin" icon="sap-icon://decline" type="Reject" press="onCancel" visible="false"/>
+        </FlexBox>
+        </VBox>
+        </content>
+     </Page>
+</mvc:View>

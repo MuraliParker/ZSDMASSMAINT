@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: com.sd.massmaint.parker.zsdmassmaint
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DS4
+          url: http://parkerds4vm:8001
+        app:
+          name: ZSDMASSMAINT
+          description: Mass Maintenance SCS_E004
+          package: ZFIORIP
+          transport: DS4K904399

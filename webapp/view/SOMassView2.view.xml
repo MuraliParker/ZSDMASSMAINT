@@ -1,0 +1,719 @@
+<mvc:View
+    controllerName="com.sd.massmaint.parker.zsdmassmaint.controller.SOMassView2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:ui="sap.ui.table"
+>
+    
+    <Page  navButtonTooltip="Back" showNavButton="true" navButtonPress="onNavButtonPress">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button text="Back" 
+                        icon="sap-icon://navigation-left-arrow" 
+                        type="Reject" 
+                        press="onNavButtonPress">
+                    </Button>
+                </contentLeft>  
+                <contentMiddle>
+                   
+                </contentMiddle>             
+                <contentRight>
+                    <Button id="idActualRunButt" 
+                        text="Actual Run" 
+                        icon="sap-icon://accept" 
+                        type="Success" 
+                        visible="false" 
+                        press="onPressActualRun">
+                    </Button>
+                </contentRight>
+            </Bar>			
+		</customHeader>   
+        <subHeader>    
+             <Bar>                
+                <contentMiddle>
+                    <Button id="idCreateMassSO" 
+                        text="Mass Create Sales orders" 
+                        type="Accept" 
+                        icon="sap-icon://checklist" 
+                        visible="false" 
+                        press="onPressMassSOCreate">
+                    </Button>
+                </contentMiddle> 
+                <contentRight>
+                 <Button id="idTestRunButt" 
+                    text="Test Run" 
+                    type="Accept" 
+                    icon="sap-icon://checklist" 
+                    visible="false" 
+                    press="onPressTestRun">
+                 </Button>
+                </contentRight> 
+             </Bar>
+        </subHeader>
+        <content>
+            <!-- <form:SimpleForm id="getSOForm" width="100%" editable="true" visible="false" > -->
+              <Panel visible="{UiMode>/ChangeMode}">  
+              
+                    	<form:SimpleForm visible="{UiMode>/ChangeMode}" id="filterForm"
+                            editable="false"
+                            layout="ColumnLayout"
+                            columnsM="2"
+                            columnsL="2"
+                            columnsXL="2"
+                            >
+                            <form:content>
+                                <Label text="{i18n>getSO}" labelFor="multiInput"/>
+                                <MultiInput
+                                    id="multiInput"
+                                    valueHelpOnly="true"
+                                    width="100%"
+                                    placeholder="{i18n>getSO}"
+                                    valueHelpRequest=".onValueHelpRequested"
+                                    visible="{UiMode>/ChangeMode}"
+                                    >
+                                      
+                                    
+                                    </MultiInput>
+                                     <Label text="{i18n>lineItemNumber}"  labelFor="lineItemNumber"/>
+                                    
+                                    <MultiInput
+                                        id="lineItemNumber"
+                                        valueHelpOnly="true"
+                                        width="100%"
+                                        placeholder="{i18n>lineItemNumber}"
+                                        valueHelpRequest=".onVHLineItem"
+                                        />
+                                    <Label text="{i18n>scheduleLineNumber}" labelFor="scheduleLineNumber"/>
+                                   
+                                    <MultiInput
+                                        id="scheduleLineNumber"
+                                        valueHelpOnly="true"
+                                        width="100%"
+                                        placeholder="{i18n>scheduleLineNumber}"
+                                        valueHelpRequest=".onVHScheduleLineItem"
+                                        />
+                           
+                                    <Label text="{i18n>orderOverAllDelvStatus}"/>
+                                    <Select 
+                                        id="orderOverAllDelvStatus"
+                                        forceSelection="false"
+                                        selectedKey="">
+                                        <core:Item key="*" text="Not Relevant for delivery" />
+                                        <core:Item key="A" text="Not delivered" />
+                                        <core:Item key="B" text="Partially delivered" />
+                                        <core:Item key="C" text="Fully delivered" />
+                                    </Select>
+                                    <Label text="{i18n>lineItemOverAllDelvStatus}"/>
+                                    <Select 
+                                        id="lineItemOverAllDelvStatus"
+                                        forceSelection="false"
+                                        selectedKey="">
+                                        <core:Item key="*" text="Not Relevant for delivery" />
+                                        <core:Item key="A" text="Not delivered" />
+                                        <core:Item key="B" text="Partially delivered" />
+                                        <core:Item key="C" text="Fully delivered" />
+                                    </Select>
+                            
+                            </form:content>
+                            <form:toolbar>
+				                <Toolbar id="TB1">
+                                <ToolbarSpacer />
+                                <Button type="Accept"
+                                            text="{i18n>go}"
+                                            press=".onGetSOData">     
+                                        </Button>
+                                </Toolbar>
+                            </form:toolbar>
+                         </form:SimpleForm>
+               
+                    </Panel>
+           
+             <ui:Table id="idTabData" 
+                rows="{localModel>/items}" 
+                selectionMode="None" 
+                visible="{= ${localModel>/items/length} > 0 ? true: false }" 
+                width="auto" 
+                class="sapUiSmallMargin">
+                
+                    <!-- For Change Only -->
+                    <ui:Column width="11rem" visible="{UiMode>/ChangeMode}" >
+						<Label text="Insert or Update Indicator" />
+						<ui:template>
+                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
+                            <ObjectStatus text="{path:'localModel>Insert or Update Indicator* I = Insert;U= Update',formatter:'.formatter.statusText' }" state="{path:'localModel>Insert or Update Indicator* I = Insert;U= Update',formatter:'.formatter.statusColor'}"/>                      
+						</ui:template>
+					</ui:Column>
+
+                    <ui:Column width="11rem" visible="{UiMode>/ChangeMode}" >
+						<Label text="Sales Document Number" />
+						<ui:template>
+                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
+                            <ObjectStatus text="{path:'localModel>Sales Document Number* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Document Number* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+						</ui:template>
+					</ui:Column>
+                     <!-- For Change Only -->
+
+                    <!-- For Create Only -->
+                    <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
+						<Label text="Sales Document Type" />
+						<ui:template>
+                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
+                            <ObjectStatus text="{path:'localModel>Sales Document Type* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Document Type* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
+						<Label text="Sales Organization"/>
+						<ui:template>                        
+							<ObjectStatus text="{path:'localModel>Sales Organization* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Organization* - SOHeader Key',formatter:'.formatter.statusColor'}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
+						<Label text="Distribution Channel"/>
+						<ui:template>
+                        <ObjectStatus text="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <ObjectStatus text="{localModel>Distribution Channel* - SOHeader Key}" state="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusColor'}"/> -->
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
+						<Label text="Division"/>
+						<ui:template>
+                        <ObjectStatus text="{path:'localModel>Division* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Division* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input  enabled="false" value="{localModel>Division* - SOHeader Key}"/> -->
+						</ui:template>
+					</ui:Column>
+                    <!-- For Create Only -->
+					
+                    <ui:Column width="11rem">
+						<Label text="Order Reason"/>
+						<ui:template>
+                        <ObjectStatus text="{path:'localModel>Order Reason* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Order Reason* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input enabled="false" value="{localModel>Order Reason* - SOHeader Key}"/> -->
+						</ui:template>
+					</ui:Column>
+
+                    <ui:Column width="11rem">
+						<Label text="Customer purchase order number"/>
+						<ui:template>
+                        <ObjectStatus text="{path:'localModel>Customer purchase order number* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Customer purchase order number* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input enabled="false" value="{localModel>Customer purchase order number* - SOHeader Key}"/> -->
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Customer purchase order date"/>
+						<ui:template>                        
+							<Text text="{localModel>Customer purchase order date - SOHeader Sales - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Requested delivery date"/>
+						<ui:template>
+							<Text text="{localModel>Requested delivery date - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Delivery Block"/>
+						<ui:template>
+							<Text text="{localModel>Delivery Block - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <!-- <ui:Column width="11rem" visible="{UiMode>/ChangeMode}"> -->
+                    <!-- <ui:Column width="11rem" visible="false"> to be removed
+						<Label text="Order Overall Delivery Status" />
+						<ui:template>
+							<Text text="{localModel>Order Overall Delivery Status - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column> -->
+                    <!-- <ui:Column width="11rem" visible="{UiMode>/ChangeMode}"> -->
+                    <!-- <ui:Column width="11rem" visible="false">
+						<Label text="Line-item overall delivery status" />
+						<ui:template>
+							<Text text="{localModel>Line-item overall delivery status - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column> -->
+                    <ui:Column width="11rem">
+						<Label text="Incoterms"/>
+						<ui:template>
+							<Text text="{localModel>Incoterms - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Incoterms Location 2 Destination"/>
+						<ui:template>
+							<Text text="{localModel>Incoterms Location 2 (Destination) - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Terms of Payment Key"/>
+						<ui:template>
+							<Text text="{localModel>Terms of Payment Key - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Customer Group 1 Freight Code"/>
+						<ui:template>
+							<Text text="{localModel>Customer Group 1 (Freight Code) - SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Ref document number Contract or Quote number"/>
+						<ui:template>
+							<Text text="{localModel>Ref document number (Contract or Quote number) - SOHeader- Sales}"/>
+                                                    
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Document category for ref document"/>
+						<ui:template>
+							<Text text="{localModel>Document category for ref document - # B= Quotes G = Contracts  SOHeader Sales}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Sales Document Item number"/>
+						<ui:template>
+							<Text text="{localModel>Sales Document Item number - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Partner Function 1"/>
+						<ui:template>
+							<Text text="{localModel>Partner Function 1* - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>Customer Number* - SOPartners1 - Key}"/>
+						</ui:template>
+					</ui:Column>   
+                    <ui:Column width="11rem">
+						<Label text="Partner Function 2"/>
+						<ui:template>
+							<Text text="{localModel>Partner Function 2* - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>Customer Number* - SOPartners2 - Key}"/>
+						</ui:template>
+					</ui:Column> 
+                     <ui:Column width="11rem">
+						<Label text="Partner Function 3"/>
+						<ui:template>
+							<Text text="{localModel>Partner Function 3* - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>Customer Number* - SOPartners3 - Key}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Partner Function 4"/>
+						<ui:template>
+							<Text text="{localModel>Partner Function 4* - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>Customer Number* - SOPartners4 - Key}"/>
+						</ui:template>
+					</ui:Column>                  
+                    <ui:Column width="11rem">
+						<Label text="Partner Function 5"/>
+						<ui:template>
+							<Text text="{localModel>Partner Function 5* - SOPartners - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>Customer Number* - SOPartners5 - Key}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Text ID 1"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 1 - Sales order Header Texts - Key}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - Sales order Header Texts1 - Text}"/>
+						</ui:template>
+					</ui:Column>                                     
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - Sales order Header Texts1 - Text}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Text ID 2"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 2 - Sales order Header Texts - Key}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - Sales order Header Texts2 - Text}"/>
+						</ui:template>
+					</ui:Column>                                                                                                                                                                     
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - Sales order Header Texts2 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 3"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 3 - Sales order Header Texts - Key}"/>                            
+						</ui:template>
+					</ui:Column>                    
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - Sales order Header Texts3 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - Sales order Header Texts3 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 4"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 4 - Sales order Header Texts - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - Sales order Header Texts4 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - Sales order Header Texts4 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 5"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 5 - Sales order Header Texts - Key}"/>
+						</ui:template>
+					</ui:Column>                                                                              
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - Sales order Header Texts5 - Text}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - Sales order Header Texts5 - Text}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Sales Document line Item"/>
+						<ui:template>
+							<Text text="{localModel>Sales Document line Item* - Sales order Item details - Key}"/>                                                
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Material Number"/>
+						<ui:template>
+							<Text text="{localModel>Material Number*  - Sales order Item details - Key}"/>                    
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="UoM"/>
+						<ui:template>
+							<Text text="{localModel>UoM - Sales order Item details - Item}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Quantity"/>
+						<ui:template>
+							<Text text="{localModel>Quantity - Sales order Item details - Item}"/>                   
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Customer Material Number"/>
+						<ui:template>
+							 <Text text="{localModel>Customer Material Number - Sales order Item details - Item}"/>                    
+						</ui:template>
+					</ui:Column> 
+                   	<ui:Column width="11rem">
+						<Label text="Customer PO Item number"/>
+						<ui:template>
+							<Text text="{localModel>Customer PO Item number - Sales order Item details - Item}"/>                            
+						</ui:template>
+					</ui:Column>
+                   	<ui:Column width="11rem">
+						<Label text="Ref document Line item number"/>
+						<ui:template>
+							<Text text="{localModel>Ref document Line item number - Sales order Item details - Item}"/>
+						</ui:template>
+					</ui:Column>			                                         
+                    <!-- To be removed !
+                     <ui:Column width="11rem">
+						<Label text="Customer Ref Date Used in ZRCR order type"/>
+						<ui:template>
+							<Text text="{localModel>Customer Ref Date Used in ZRCR order type - Sales order Item details - Item}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Your Reference Used in ZRCR order type"/>
+						<ui:template>
+							<Text text="{localModel>Your Reference Used in ZRCR order type - Sales order Item details - Item}"/>
+						</ui:template>
+					</ui:Column> -->
+                    <ui:Column width="11rem">
+						<Label text="Sales Document line Item"/>
+						<ui:template>
+							<Text text="{localModel>Sales Document line Item* - Sales order Item conditions}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Condition Type ZMAN GRWR "/>
+						<ui:template>
+							<Text text="{localModel>Condition Type ZMAN, GRWR* - Sales order Item conditions}"/>
+						</ui:template>
+					</ui:Column>          
+                    <ui:Column width="11rem">
+						<Label text="Amount"/>
+						<ui:template>
+							<Text text="{localModel>Amount - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column>           
+                    <ui:Column width="11rem">
+						<Label text="Condition unit currency or percentage"/>
+						<ui:template>
+							<Text text="{localModel>Condition unit (currency or percentage) - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Condition Pricing Unit"/>
+						<ui:template>
+							<Text text="{localModel>Condition Pricing Unit - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Condition Unit of Measure"/>
+						<ui:template>
+							<Text text="{localModel>Condition Unit of Measure - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Numerator for Conversion"/>
+						<ui:template>
+							<Text text="{localModel>Numerator for Conversion - Sales order Item conditions - Condition Details}" />
+						</ui:template>
+					</ui:Column>                     
+                    <ui:Column width="11rem">
+						<Label text="Denominator for Conversion"/>
+						<ui:template>
+							<Text text="{localModel>Denominator for Conversion - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Base Unit of Measure"/>
+						<ui:template>
+							<Text text="{localModel>Base Unit of Measure - Sales order Item conditions - Condition Details}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Sales Document Item"/>
+						<ui:template>
+                            <Text text="{localModel>Sales Document Item* - Sales order Schedule Line Data}"/>							                         
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Delivery Schedule Line Number"/>
+						<ui:template>
+							<Text text="{localModel>Delivery Schedule Line Number* - Sales order Schedule Line Data}"/>
+						</ui:template>
+					</ui:Column> 
+                    <ui:Column width="11rem">
+						<Label text="Delivery Block"/>
+						<ui:template>
+							<Text text="{localModel>Delivery Block - Sales order Schedule Line Data - Item}"/>
+						</ui:template>
+					</ui:Column>
+                    
+                    <ui:Column width="11rem">
+						<Label text="Order quantity in sales units"/>
+						<ui:template>
+							<Text text="{localModel>Order quantity in sales units* - Sales order Schedule Line Data - Item}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Schedule line date or Delivery Date"/>
+						<ui:template>
+							<Text text="{localModel>Schedule line date or Delivery Date - SOSchedule Line Data - Item}"/>
+						</ui:template>
+					</ui:Column>                    
+                    <ui:Column width="11rem">
+						<Label text="SD Sales order Line Item"/>
+						<ui:template>
+							<Text text="{localModel>SD Sales order Line Item - SD - SOItem texts - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 1"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 1 - SD - SOItem texts - Key}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - SD - SOItem texts1 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - SD - SOItem texts1 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 2"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 2 - SD - SOItem texts - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+                            <Text text="{localModel>Language key - SD - SOItem texts2 - Text}"/>                    
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - SD - SOItem texts2 - Text}"/>                    
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 3"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 3 - SD - SOItem texts - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - SD - SOItem texts3 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - SD - SOItem texts3 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 4"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 4 - SD - SOItem texts - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - SD - SOItem texts4 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - SD - SOItem texts4 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text ID 5"/>
+						<ui:template>
+							<Text text="{localModel>Text ID 5 - SD - SOItem texts - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>Language key - SD - SOItem texts5 - Text}"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>Text - SD - SOItem texts5 - Text}"/> 
+						</ui:template>
+					</ui:Column>   
+                    <!-- <ui:Column width="11rem">
+						<Label text="Success"/>
+						<ui:template>
+							<Text text="{localModel>Success}"/> 
+						</ui:template>
+					</ui:Column>   
+                    <ui:Column width="11rem">
+						<Label text="Errors based on PO Number"/>
+						<ui:template>
+							<Text text="{localModel>Errors based on PO Number}"/> 
+						</ui:template>
+					</ui:Column>                     -->
+		</ui:Table>
+        </content>  
+        <footer>
+        <Bar>                		
+            <contentLeft>
+                <Button id="idDLFileButt" 
+                    visible="{= ${localModel>/items/length} > 0 &amp;&amp; ${UiMode>/ChangeMode} ? true: false }" 
+                    text="Download File" 
+                    icon="sap-icon://download" 
+                    type="Emphasized" 
+                    press="onExportWithData"/>
+                
+                <Button id="messageViewBtn"
+                    visible="{= ${messages>/}.length > 0 ? true : false}"
+					press=".handleMessageViewPress"
+					ariaHasPopup="Dialog"/>
+            </contentLeft>
+            <contentMiddle>
+            <ToolbarSpacer/>
+                <Button id="idDLTempButt" 
+                text="Download Template" 
+                icon="sap-icon://excel-attachment" 
+                press="onExportToXL" 
+                type="Success"/>
+                
+            </contentMiddle>
+            <contentRight>
+                <u:FileUploader id="FileUploaderId"  
+                sameFilenameAllowed="true" 
+                iconOnly="false" 
+                buttonOnly="true" 
+                fileType="XLSX,xlsx"
+                icon="sap-icon://upload" 
+                iconFirst="true" 
+                style="Emphasized" 
+                buttonText="Upload"
+                change="onUpload"/>
+            </contentRight>
+        </Bar>
+        </footer>  
+     </Page>
+</mvc:View>

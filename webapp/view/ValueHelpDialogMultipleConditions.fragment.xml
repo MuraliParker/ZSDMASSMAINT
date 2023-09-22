@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core">
+   
+        <ValueHelpDialog
+            title="Value Help"
+            ok=".onValueHelpOkPress"
+            cancel=".onValueHelpCancelPress"
+            afterClose=".onValueHelpAfterClose"
+            key="Vbeln"
+            descriptionKey="Vbeln"
+            supportRanges="true"
+            maxExcludeRanges="0"
+        >  
+
+        <filterBar>
+			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="Vbeln"
+						label="Sales Document"
+						visibleInFilterBar="false"
+					>
+						<fb:control>
+							<m:Input name="Vbeln" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<!-- <fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="line-item"
+						label="line-item number"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="line-item" />
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="Schedule line Number"
+						label="schedule-line"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="schedule-line" />
+						</fb:control>
+					</fb:FilterGroupItem> -->
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+        </ValueHelpDialog>
+        
+</core:FragmentDefinition>
