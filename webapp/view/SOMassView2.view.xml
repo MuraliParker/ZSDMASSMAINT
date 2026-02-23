@@ -143,16 +143,16 @@
                     <ui:Column width="11rem" visible="{UiMode>/ChangeMode}" >
 						<Label text="Insert or Update Indicator" />
 						<ui:template>
-                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
-                            <ObjectStatus text="{path:'localModel>Insert or Update Indicator* I = Insert;U= Update',formatter:'.formatter.statusText' }" state="{path:'localModel>Insert or Update Indicator* I = Insert;U= Update',formatter:'.formatter.statusColor'}"/>                      
+                            <!-- <Text text="{localModel>DocType}"/>   -->
+                            <ObjectStatus text="{path:'localModel>Indicator',formatter:'.formatter.statusText' }" state="{path:'localModel>Indicator',formatter:'.formatter.statusColor'}"/>                      
 						</ui:template>
 					</ui:Column>
 
                     <ui:Column width="11rem" visible="{UiMode>/ChangeMode}" >
 						<Label text="Sales Document Number" />
 						<ui:template>
-                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
-                            <ObjectStatus text="{path:'localModel>Sales Document Number* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Document Number* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+                            <!-- <Text text="{localModel>DocType}"/>   -->
+                            <ObjectStatus text="{path:'localModel>Salesdocumentin',formatter:'.formatter.statusText' }" state="{path:'localModel>Salesdocumentin',formatter:'.formatter.statusColor'}"/>                      
 						</ui:template>
 					</ui:Column>
                      <!-- For Change Only -->
@@ -161,28 +161,28 @@
                     <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
 						<Label text="Sales Document Type" />
 						<ui:template>
-                            <!-- <Text text="{localModel>Sales Document Type* - SOHeader Key}"/>   -->
-                            <ObjectStatus text="{path:'localModel>Sales Document Type* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Document Type* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
+                            <!-- <Text text="{localModel>DocType}"/>   -->
+                            <ObjectStatus text="{path:'localModel>DocType',formatter:'.formatter.statusText' }" state="{path:'localModel>DocType',formatter:'.formatter.statusColor'}"/>                      
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
 						<Label text="Sales Organization"/>
 						<ui:template>                        
-							<ObjectStatus text="{path:'localModel>Sales Organization* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Sales Organization* - SOHeader Key',formatter:'.formatter.statusColor'}"/>
+							<ObjectStatus text="{path:'localModel>SalesOrg',formatter:'.formatter.statusText' }" state="{path:'localModel>SalesOrg',formatter:'.formatter.statusColor'}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
 						<Label text="Distribution Channel"/>
 						<ui:template>
-                        <ObjectStatus text="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
-							<!-- <ObjectStatus text="{localModel>Distribution Channel* - SOHeader Key}" state="{path:'localModel>Distribution Channel* - SOHeader Key',formatter:'.formatter.statusColor'}"/> -->
+                        <ObjectStatus text="{path:'localModel>DistrChan',formatter:'.formatter.statusText' }" state="{path:'localModel>DistrChan',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <ObjectStatus text="{localModel>DistrChan}" state="{path:'localModel>DistrChan',formatter:'.formatter.statusColor'}"/> -->
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem" visible="{UiMode>/CreateMode}">
 						<Label text="Division"/>
 						<ui:template>
-                        <ObjectStatus text="{path:'localModel>Division* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Division* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
-							<!-- <Input  enabled="false" value="{localModel>Division* - SOHeader Key}"/> -->
+                        <ObjectStatus text="{path:'localModel>Division',formatter:'.formatter.statusText' }" state="{path:'localModel>Division',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input  enabled="false" value="{localModel>Division}"/> -->
 						</ui:template>
 					</ui:Column>
                     <!-- For Create Only -->
@@ -190,477 +190,529 @@
                     <ui:Column width="11rem">
 						<Label text="Order Reason"/>
 						<ui:template>
-                        <ObjectStatus text="{path:'localModel>Order Reason* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Order Reason* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
-							<!-- <Input enabled="false" value="{localModel>Order Reason* - SOHeader Key}"/> -->
+                        <ObjectStatus text="{path:'localModel>ORD_REASON',formatter:'.formatter.statusText' }" state="{path:'localModel>ORD_REASON',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input enabled="false" value="{localModel>ORD_REASON}"/> -->
 						</ui:template>
 					</ui:Column>
 
                     <ui:Column width="11rem">
 						<Label text="Customer purchase order number"/>
 						<ui:template>
-                        <ObjectStatus text="{path:'localModel>Customer purchase order number* - SOHeader Key',formatter:'.formatter.statusText' }" state="{path:'localModel>Customer purchase order number* - SOHeader Key',formatter:'.formatter.statusColor'}"/>                      
-							<!-- <Input enabled="false" value="{localModel>Customer purchase order number* - SOHeader Key}"/> -->
+                        <ObjectStatus text="{path:'localModel>PurchNoS',formatter:'.formatter.statusText' }" state="{path:'localModel>PurchNoS',formatter:'.formatter.statusColor'}"/>                      
+							<!-- <Input enabled="false" value="{localModel>PurchNoS}"/> -->
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Customer purchase order date"/>
 						<ui:template>                        
-							<Text text="{localModel>Customer purchase order date - SOHeader Sales - Key}"/>
+							<Text text="{localModel>PoDatS}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Requested delivery date"/>
 						<ui:template>
-							<Text text="{localModel>Requested delivery date - SOHeader Sales}"/>
+							<Text text="{localModel>ReqDateH}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Delivery Block"/>
 						<ui:template>
-							<Text text="{localModel>Delivery Block - SOHeader Sales}"/>
+							<Text text="{localModel>DlvBlock}"/>
 						</ui:template>
 					</ui:Column>
                     <!-- <ui:Column width="11rem" visible="{UiMode>/ChangeMode}"> -->
                     <!-- <ui:Column width="11rem" visible="false"> to be removed
 						<Label text="Order Overall Delivery Status" />
 						<ui:template>
-							<Text text="{localModel>Order Overall Delivery Status - SOHeader Sales}"/>
+							<Text text="{localModel>OrdDelStat}"/>
 						</ui:template>
 					</ui:Column> -->
                     <!-- <ui:Column width="11rem" visible="{UiMode>/ChangeMode}"> -->
                     <!-- <ui:Column width="11rem" visible="false">
 						<Label text="Line-item overall delivery status" />
 						<ui:template>
-							<Text text="{localModel>Line-item overall delivery status - SOHeader Sales}"/>
+							<Text text="{localModel>ItmDelStat}"/>
 						</ui:template>
 					</ui:Column> -->
                     <ui:Column width="11rem">
 						<Label text="Incoterms"/>
 						<ui:template>
-							<Text text="{localModel>Incoterms - SOHeader Sales}"/>
+							<Text text="{localModel>Incoterms1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Incoterms Location 2 Destination"/>
 						<ui:template>
-							<Text text="{localModel>Incoterms Location 2 (Destination) - SOHeader Sales}"/>
+							<Text text="{localModel>Incoterms3l}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Terms of Payment Key"/>
 						<ui:template>
-							<Text text="{localModel>Terms of Payment Key - SOHeader Sales}"/>
+							<Text text="{localModel>Pmnttrms}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Customer Group 1 Freight Code"/>
 						<ui:template>
-							<Text text="{localModel>Customer Group 1 (Freight Code) - SOHeader Sales}"/>
+							<Text text="{localModel>CustGrp1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Ref document number Contract or Quote number"/>
 						<ui:template>
-							<Text text="{localModel>Ref document number (Contract or Quote number) - SOHeader- Sales}"/>
+							<Text text="{localModel>RefDocL}"/>
                                                     
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Document category for ref document"/>
 						<ui:template>
-							<Text text="{localModel>Document category for ref document - # B= Quotes G = Contracts  SOHeader Sales}"/>
+							<Text text="{localModel>SdDocCat}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Sales Document Item number"/>
 						<ui:template>
-							<Text text="{localModel>Sales Document Item number - SOPartners - Key}"/>
+							<Text text="{localModel>PartnItem}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Partner Function 1"/>
 						<ui:template>
-							<Text text="{localModel>Partner Function 1* - SOPartners - Key}"/>
+							<Text text="{localModel>PartnRole1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Customer Number"/>
 						<ui:template>
-							<Text text="{localModel>Customer Number* - SOPartners1 - Key}"/>
+							<Text text="{localModel>PartnNumb1}"/>
 						</ui:template>
 					</ui:Column>   
                     <ui:Column width="11rem">
 						<Label text="Partner Function 2"/>
 						<ui:template>
-							<Text text="{localModel>Partner Function 2* - SOPartners - Key}"/>
+							<Text text="{localModel>PartnRole2}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Customer Number"/>
 						<ui:template>
-							<Text text="{localModel>Customer Number* - SOPartners2 - Key}"/>
+							<Text text="{localModel>PartnNumb2}"/>
 						</ui:template>
 					</ui:Column> 
                      <ui:Column width="11rem">
 						<Label text="Partner Function 3"/>
 						<ui:template>
-							<Text text="{localModel>Partner Function 3* - SOPartners - Key}"/>
+							<Text text="{localModel>PartnRole3}"/>
 						</ui:template>
 					</ui:Column>  
                     <ui:Column width="11rem">
 						<Label text="Customer Number"/>
 						<ui:template>
-							<Text text="{localModel>Customer Number* - SOPartners3 - Key}"/>
+							<Text text="{localModel>PartnNumb3}"/>
 						</ui:template>
 					</ui:Column>  
                     <ui:Column width="11rem">
 						<Label text="Partner Function 4"/>
 						<ui:template>
-							<Text text="{localModel>Partner Function 4* - SOPartners - Key}"/>
+							<Text text="{localModel>PartnRole4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Customer Number"/>
 						<ui:template>
-							<Text text="{localModel>Customer Number* - SOPartners4 - Key}"/>
+							<Text text="{localModel>PartnNumb4}"/>
 						</ui:template>
 					</ui:Column>                  
                     <ui:Column width="11rem">
 						<Label text="Partner Function 5"/>
 						<ui:template>
-							<Text text="{localModel>Partner Function 5* - SOPartners - Key}"/>
+							<Text text="{localModel>PartnRole5}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Customer Number"/>
 						<ui:template>
-							<Text text="{localModel>Customer Number* - SOPartners5 - Key}"/>
+							<Text text="{localModel>PartnNumb5}"/>
 						</ui:template>
 					</ui:Column>  
+
+					<!-- // US: 431142 : Task 438710: Fiori Development (OTC_2.1_E169)=> Start -->
+					<ui:Column width="11rem">
+						<Label text="Partner Function 6"/>
+						<ui:template>
+							<Text text="{localModel>PartnRole6}"/>
+						</ui:template>
+					</ui:Column>  
+					<ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>PartnNumb6}"/>
+						</ui:template>
+					</ui:Column>  
+
+					<ui:Column width="11rem">
+						<Label text="Partner Function 7"/>
+						<ui:template>
+							<Text text="{localModel>PartnRole7}"/>
+						</ui:template>
+					</ui:Column>  
+					<ui:Column width="11rem">
+						<Label text="Customer Number"/>
+						<ui:template>
+							<Text text="{localModel>PartnNumb7}"/>
+						</ui:template>
+					</ui:Column> 
+					<!-- // US: 431142 : Task 438710: Fiori Development (OTC_2.1_E169)=> End -->
+
                     <ui:Column width="11rem">
 						<Label text="Text ID 1"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 1 - Sales order Header Texts - Key}"/>
+							<Text text="{localModel>HdrTextId1}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - Sales order Header Texts1 - Text}"/>
+							<Text text="{localModel>HdrLangu1}"/>
 						</ui:template>
 					</ui:Column>                                     
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - Sales order Header Texts1 - Text}"/>
+							<Text text="{localModel>HdrTextLine1}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Text ID 2"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 2 - Sales order Header Texts - Key}"/>
+							<Text text="{localModel>HdrTextId2}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - Sales order Header Texts2 - Text}"/>
+							<Text text="{localModel>HdrLangu2}"/>
 						</ui:template>
 					</ui:Column>                                                                                                                                                                     
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - Sales order Header Texts2 - Text}"/>
+							<Text text="{localModel>HdrTextLine2}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 3"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 3 - Sales order Header Texts - Key}"/>                            
+							<Text text="{localModel>HdrTextId3}"/>                            
 						</ui:template>
 					</ui:Column>                    
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - Sales order Header Texts3 - Text}"/>
+							<Text text="{localModel>HdrLangu3}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - Sales order Header Texts3 - Text}"/>
+							<Text text="{localModel>HdrTextLine3}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 4"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 4 - Sales order Header Texts - Key}"/>
+							<Text text="{localModel>HdrTextId4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - Sales order Header Texts4 - Text}"/>
+							<Text text="{localModel>HdrLangu4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - Sales order Header Texts4 - Text}"/>
+							<Text text="{localModel>HdrTextLine4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 5"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 5 - Sales order Header Texts - Key}"/>
+							<Text text="{localModel>HdrTextId5}"/>
 						</ui:template>
 					</ui:Column>                                                                              
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - Sales order Header Texts5 - Text}"/>
+							<Text text="{localModel>HdrLangu5}"/>
 						</ui:template>
 					</ui:Column>  
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - Sales order Header Texts5 - Text}"/>
+							<Text text="{localModel>HdrTextLine5}"/>
 						</ui:template>
 					</ui:Column> 
+
+				<!-- US: 431142 : Task 438710: Fiori Development (OTC_2.1_E169)=> Start -->
+
+					<ui:Column width="11rem">
+						<Label text="Text ID 6"/>
+						<ui:template>
+							<Text text="{localModel>HdrTextId6}"/>
+						</ui:template>
+					</ui:Column>                                                                              
+                    <ui:Column width="11rem">
+						<Label text="Language key"/>
+						<ui:template>
+							<Text text="{localModel>HdrLangu6}"/>
+						</ui:template>
+					</ui:Column>  
+                    <ui:Column width="11rem">
+						<Label text="Text"/>
+						<ui:template>
+							<Text text="{localModel>HdrTextLine6}"/>
+						</ui:template>
+					</ui:Column> 
+				<!-- US: 431142 : Task 438710: Fiori Development (OTC_2.1_E169)=> End -->
+
                     <ui:Column width="11rem">
 						<Label text="Sales Document line Item"/>
 						<ui:template>
-							<Text text="{localModel>Sales Document line Item* - Sales order Item details - Key}"/>                                                
+							<Text text="{localModel>ItemNumber}"/>                                                
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Material Number"/>
 						<ui:template>
-							<Text text="{localModel>Material Number*  - Sales order Item details - Key}"/>                    
+							<Text text="{localModel>Material}"/>                    
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="UoM"/>
 						<ui:template>
-							<Text text="{localModel>UoM - Sales order Item details - Item}"/>
+							<Text text="{localModel>TargetQu}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Quantity"/>
 						<ui:template>
-							<Text text="{localModel>Quantity - Sales order Item details - Item}"/>                   
+							<Text text="{localModel>TargetQty}"/>                   
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Customer Material Number"/>
 						<ui:template>
-							 <Text text="{localModel>Customer Material Number - Sales order Item details - Item}"/>                    
+							 <Text text="{localModel>CustMat35}"/>                    
 						</ui:template>
 					</ui:Column> 
                    	<ui:Column width="11rem">
 						<Label text="Customer PO Item number"/>
 						<ui:template>
-							<Text text="{localModel>Customer PO Item number - Sales order Item details - Item}"/>                            
+							<Text text="{localModel>PoItmNo}"/>                            
 						</ui:template>
 					</ui:Column>
                    	<ui:Column width="11rem">
 						<Label text="Ref document Line item number"/>
 						<ui:template>
-							<Text text="{localModel>Ref document Line item number - Sales order Item details - Item}"/>
+							<Text text="{localModel>RefDocIt}"/>
 						</ui:template>
 					</ui:Column>			                                         
                     <!-- To be removed !
                      <ui:Column width="11rem">
 						<Label text="Customer Ref Date Used in ZRCR order type"/>
 						<ui:template>
-							<Text text="{localModel>Customer Ref Date Used in ZRCR order type - Sales order Item details - Item}"/>
+							<Text text="{localModel>CustRefDate}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Your Reference Used in ZRCR order type"/>
 						<ui:template>
-							<Text text="{localModel>Your Reference Used in ZRCR order type - Sales order Item details - Item}"/>
+							<Text text="{localModel>Ref1}"/>
 						</ui:template>
 					</ui:Column> -->
                     <ui:Column width="11rem">
 						<Label text="Sales Document line Item"/>
 						<ui:template>
-							<Text text="{localModel>Sales Document line Item* - Sales order Item conditions}"/>
+							<Text text="{localModel>CondItem}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Condition Type ZMAN GRWR "/>
 						<ui:template>
-							<Text text="{localModel>Condition Type ZMAN, GRWR* - Sales order Item conditions}"/>
+							<Text text="{localModel>CondType}"/>
 						</ui:template>
 					</ui:Column>          
                     <ui:Column width="11rem">
 						<Label text="Amount"/>
 						<ui:template>
-							<Text text="{localModel>Amount - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>CondValue}"/>
 						</ui:template>
 					</ui:Column>           
                     <ui:Column width="11rem">
 						<Label text="Condition unit currency or percentage"/>
 						<ui:template>
-							<Text text="{localModel>Condition unit (currency or percentage) - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>Currency}"/>
 						</ui:template>
 					</ui:Column>  
                     <ui:Column width="11rem">
 						<Label text="Condition Pricing Unit"/>
 						<ui:template>
-							<Text text="{localModel>Condition Pricing Unit - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>CondPUnt}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Condition Unit of Measure"/>
 						<ui:template>
-							<Text text="{localModel>Condition Unit of Measure - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>CondUnit}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Numerator for Conversion"/>
 						<ui:template>
-							<Text text="{localModel>Numerator for Conversion - Sales order Item conditions - Condition Details}" />
+							<Text text="{localModel>Numconvert}" />
 						</ui:template>
 					</ui:Column>                     
                     <ui:Column width="11rem">
 						<Label text="Denominator for Conversion"/>
 						<ui:template>
-							<Text text="{localModel>Denominator for Conversion - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>Denominato}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Base Unit of Measure"/>
 						<ui:template>
-							<Text text="{localModel>Base Unit of Measure - Sales order Item conditions - Condition Details}"/>
+							<Text text="{localModel>IsoUnit}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Sales Document Item"/>
 						<ui:template>
-                            <Text text="{localModel>Sales Document Item* - Sales order Schedule Line Data}"/>							                         
+                            <Text text="{localModel>SchedItem}"/>							                         
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Delivery Schedule Line Number"/>
 						<ui:template>
-							<Text text="{localModel>Delivery Schedule Line Number* - Sales order Schedule Line Data}"/>
+							<Text text="{localModel>SchedLine}"/>
 						</ui:template>
 					</ui:Column> 
                     <ui:Column width="11rem">
 						<Label text="Delivery Block"/>
 						<ui:template>
-							<Text text="{localModel>Delivery Block - Sales order Schedule Line Data - Item}"/>
+							<Text text="{localModel>ReqDlvBl}"/>
 						</ui:template>
 					</ui:Column>
                     
                     <ui:Column width="11rem">
 						<Label text="Order quantity in sales units"/>
 						<ui:template>
-							<Text text="{localModel>Order quantity in sales units* - Sales order Schedule Line Data - Item}"/>
+							<Text text="{localModel>ReqQty}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Schedule line date or Delivery Date"/>
 						<ui:template>
-							<Text text="{localModel>Schedule line date or Delivery Date - SOSchedule Line Data - Item}"/>
+							<Text text="{localModel>DlvDate}"/>
 						</ui:template>
 					</ui:Column>                    
                     <ui:Column width="11rem">
 						<Label text="SD Sales order Line Item"/>
 						<ui:template>
-							<Text text="{localModel>SD Sales order Line Item - SD - SOItem texts - Key}"/>
+							<Text text="{localModel>ItemText}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 1"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 1 - SD - SOItem texts - Key}"/>
+							<Text text="{localModel>ItemTextId1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - SD - SOItem texts1 - Text}"/>
+							<Text text="{localModel>ItemLangu1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - SD - SOItem texts1 - Text}"/>
+							<Text text="{localModel>ItemTextLine1}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 2"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 2 - SD - SOItem texts - Text}"/>
+							<Text text="{localModel>ItemTextId2}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-                            <Text text="{localModel>Language key - SD - SOItem texts2 - Text}"/>                    
+                            <Text text="{localModel>ItemLangu2}"/>                    
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - SD - SOItem texts2 - Text}"/>                    
+							<Text text="{localModel>ItemTextLine2}"/>                    
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 3"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 3 - SD - SOItem texts - Text}"/>
+							<Text text="{localModel>ItemTextId3}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - SD - SOItem texts3 - Text}"/>
+							<Text text="{localModel>ItemTextId3}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - SD - SOItem texts3 - Text}"/>
+							<Text text="{localModel>ItemTextLine3}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 4"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 4 - SD - SOItem texts - Text}"/>
+							<Text text="{localModel>ItemTextId4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - SD - SOItem texts4 - Text}"/>
+							<Text text="{localModel>ItemLangu4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - SD - SOItem texts4 - Text}"/>
+							<Text text="{localModel>ItemTextLine4}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text ID 5"/>
 						<ui:template>
-							<Text text="{localModel>Text ID 5 - SD - SOItem texts - Text}"/>
+							<Text text="{localModel>ItemTextId5}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Language key"/>
 						<ui:template>
-							<Text text="{localModel>Language key - SD - SOItem texts5 - Text}"/>
+							<Text text="{localModel>ItemLangu5}"/>
 						</ui:template>
 					</ui:Column>
                     <ui:Column width="11rem">
 						<Label text="Text"/>
 						<ui:template>
-							<Text text="{localModel>Text - SD - SOItem texts5 - Text}"/> 
+							<Text text="{localModel>ItemTextLine5}"/> 
 						</ui:template>
 					</ui:Column>   
                     <!-- <ui:Column width="11rem">

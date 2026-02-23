@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <!-- Copyright (c) 2015 SAP AG, All Rights Reserved -->
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
@@ -54,21 +55,19 @@
         };
     </script>
 
-    <script src="../test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+    <!-- <script src="../test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script> -->
+    <script id="sap-ushell-bootstrap" src="/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
     <!-- Bootstrap the UI5 core library -->
-    <script id="sap-ui-bootstrap"
-        src="../resources/sap-ui-core.js"
+    <!-- https://ui5.sap.com/resources/sap-ui-core.js -->
+    <!-- ../resources/sap-ui-core.js -->
+    <script id="sap-ui-bootstrap" src="https://ui5.sap.com/resources/sap-ui-core.js"
         data-sap-ui-libs="sap.f,sap.m,sap.suite.ui.generic.template,sap.ui.comp,sap.ui.core,sap.ui.generic.app,sap.ui.table,sap.ushell"
-        data-sap-ui-async="true"
-        data-sap-ui-preload="async"
-        data-sap-ui-theme="sap_fiori_3"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-language="en"
-        data-sap-ui-resourceroots='{"com.sd.massmaint.parker.zsdmassmaint": "../"}'
-        data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
+        data-sap-ui-async="true" data-sap-ui-preload="async" data-sap-ui-theme="sap_fiori_3"
+        data-sap-ui-compatVersion="edge" data-sap-ui-language="en"
+        data-sap-ui-resourceroots='{"com.sd.massmaint.parker.zsdmassmaint": "../"}' data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
         </script>
-        <script id="locate-reuse-libs" src="../utils/locate-reuse-libs.js" data-sap-ui-manifest-uri="../manifest.json">
-        </script>
+    <script id="locate-reuse-libs" src="../utils/locate-reuse-libs.js" data-sap-ui-manifest-uri="../manifest.json">
+    </script>
 </head>
 
 <!-- UI Content -->

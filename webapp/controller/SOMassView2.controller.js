@@ -35,7 +35,7 @@ sap.ui.define([
             oSOModel: null,
             oCreateModel: createModel,
             oChangeModel: changeModel,
-            
+
             onInit: function () {
                 this.getOwnerComponent().getRouter().getRoute("RoutSOMassView2").attachPatternMatched(this._onPatternMatched, this);
                 this._oMultiInput = this.getView().byId("multiInput");
@@ -95,8 +95,8 @@ sap.ui.define([
                 var oTableObj = this.getView().byId("idTabData").getModel("localModel").getData();
                 var oTableObjLen = oTableObj.items.length;
 
-                var bTestRun = this.oRunType === "TestRun" ? "X" :"";
-               
+                var bTestRun = this.oRunType === "TestRun" ? "X" : "";
+
                 var aItems = [];
                 for (var i = 0; i < oTableObjLen; i++) {
                     var oPushRow = this.oSOModel.getRowObject(oTableObj.items[i]);
@@ -112,7 +112,7 @@ sap.ui.define([
                 } else if (this.selKeyVal === "idSOChange") {
                     var oPayLoad = {
                         "SalesDoc": "SOCHANGE",
-                        "TestRun":bTestRun,
+                        "TestRun": bTestRun,
                         "ChangeHeaderToItemNav": aItems
                     };
 
@@ -136,61 +136,61 @@ sap.ui.define([
                 }
                 return aMessages;
             },
-            validateRequiredValues: function(aRows){
+            validateRequiredValues: function (aRows) {
                 for (let index = 0; index < aRows.length; index++) {
                     var oRow = aRows[index];
-                    var nRow = index+1;
+                    var nRow = index + 1;
                     var bValid = true;
                     if (this.selKeyVal === "idSOCreate") {
                         bValid = this.validateCreateRequired(oRow, nRow);
                     } else if (this.selKeyVal === "idSOChange") {
-                        bValid = this.validateChangeRequired(oRow,nRow);
+                        bValid = this.validateChangeRequired(oRow, nRow);
                     }
-                    if(!bValid){
+                    if (!bValid) {
                         return bValid;
                     }
                 }
                 return true;
             },
-            validateCreateRequired: function(oRow, index){
+            validateCreateRequired: function (oRow, index) {
 
-                if (oRow.DocType === "Required Value" || oRow.DocType ==="" || oRow.DocType === undefined) {
-                    MessageToast.show(this.getResourceBundle().getText("DocType")+" "+this.getResourceBundle().getText("inRow")+index);
+                if (oRow.DocType === "Required Value" || oRow.DocType === "" || oRow.DocType === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("DocType") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                } else if (oRow.SalesOrg === "Required Value" || oRow.SalesOrg ==="" || oRow.SalesOrg === undefined) {
-                    MessageToast.show(this.getResourceBundle().getText("SalesOrg")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.SalesOrg === "Required Value" || oRow.SalesOrg === "" || oRow.SalesOrg === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("SalesOrg") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.DistrChan === "Required Value" || oRow.DistrChan ==="" || oRow.DistrChan === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("DistrChan")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.DistrChan === "Required Value" || oRow.DistrChan === "" || oRow.DistrChan === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("DistrChan") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.Division === "Required Value" || oRow.Division ==="" || oRow.Division === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("Division")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.Division === "Required Value" || oRow.Division === "" || oRow.Division === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("Division") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.PurchNoS === "Required Value" || oRow.PurchNoS ==="" || oRow.PurchNoS === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("PurchNoS")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.PurchNoS === "Required Value" || oRow.PurchNoS === "" || oRow.PurchNoS === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("PurchNoS") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.ORD_REASON === "Required Value" || oRow.ORD_REASON ==="" || oRow.ORD_REASON === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("ORD_REASON")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.ORD_REASON === "Required Value" || oRow.ORD_REASON === "" || oRow.ORD_REASON === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("ORD_REASON") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else{
+                } else {
                     return true;
                 }
             },
-            validateChangeRequired: function(oRow, index){
-                                
-                if (oRow.Indicator === "Required Value" || oRow.Indicator ==="" || oRow.Indicator === undefined) {
-                    MessageToast.show(this.getResourceBundle().getText("Indicator")+" "+this.getResourceBundle().getText("inRow")+index);
+            validateChangeRequired: function (oRow, index) {
+
+                if (oRow.Indicator === "Required Value" || oRow.Indicator === "" || oRow.Indicator === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("Indicator") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                } else if (oRow.Salesdocumentin === "Required Value" || oRow.Salesdocumentin ==="" || oRow.Salesdocumentin === undefined) {
-                    MessageToast.show(this.getResourceBundle().getText("Salesdocumentin")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.Salesdocumentin === "Required Value" || oRow.Salesdocumentin === "" || oRow.Salesdocumentin === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("Salesdocumentin") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.PurchNoS === "Required Value" || oRow.PurchNoS ==="" || oRow.PurchNoS === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("PurchNoS")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.PurchNoS === "Required Value" || oRow.PurchNoS === "" || oRow.PurchNoS === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("PurchNoS") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else if (oRow.ORD_REASON === "Required Value" || oRow.ORD_REASON ==="" || oRow.ORD_REASON === undefined){
-                    MessageToast.show(this.getResourceBundle().getText("ORD_REASON")+" "+this.getResourceBundle().getText("inRow")+index);
+                } else if (oRow.ORD_REASON === "Required Value" || oRow.ORD_REASON === "" || oRow.ORD_REASON === undefined) {
+                    MessageToast.show(this.getResourceBundle().getText("ORD_REASON") + " " + this.getResourceBundle().getText("inRow") + index);
                     return false;
-                }else{
+                } else {
                     return true;
                 }
             },
@@ -202,10 +202,10 @@ sap.ui.define([
                 var returnMsg = [];
                 if (this.oRunType === "TestRun") {
                     this.getView().byId("idActualRunButt").setVisible(true);
-                    this.getView().byId("idTestRunButt").setVisible(true);                            
+                    this.getView().byId("idTestRunButt").setVisible(true);
                     var oTableObj = this.getView().byId("idTabData")
                     var oTableObjLen = this.getView().byId("idTabData").getModel("localModel").getData().items.length;
-                   
+
                     for (var i = 0; i < oTableObjLen; i++) {
                         // oTableObj.getRows()[i].getCells()[80].setText(res.HeaderToItemNav.results[i].ErrorMsg);
                         // oTableObj.getRows()[i].getCells()[79].setText(res.HeaderToItemNav.results[i].SuccessMsg);
@@ -224,7 +224,7 @@ sap.ui.define([
                         };
 
                     }
-                    
+
                     //   @res.actualrunstatus: Comes From Backend and Lets us know if any Lineitem is failed.
                     if (res.testrunstatus === "X") {
                         MessageToast.show(this.getResourceBundle().getText("failedTestRun"));
@@ -269,16 +269,16 @@ sap.ui.define([
                     // this.getView().byId("idCreateMassSO").setVisible(true);  
                     // (this.getView().getModel("localModel")).setData(res.HeaderToItemNav);  
                     this.oMessageModel.setData(returnMsg);
-                    this.updateMessageView();                                                                                 
+                    this.updateMessageView();
                 }
-                
+
             },
             onPostFail: function (oError) {
                 sap.ui.core.BusyIndicator.hide();
                 sap.m.MessageToast.show(this.getResourceBundle().getText("teschincalIssue"));
                 console.log(oError);
             },
-            updateMessageView: function(){
+            updateMessageView: function () {
                 // Model binding is not working so doing it manually;
                 var oMsgButton = this.getView().byId("messageViewBtn");
                 oMsgButton.setIcon(this.buttonIconFormatter());
@@ -289,7 +289,7 @@ sap.ui.define([
                     // Auto Open the Message View.
                     oMsgButton.firePress();
                 }
-                
+
             },
             onPressTestRun: function (oEvent) {
                 this.oRunType = "TestRun";
@@ -301,7 +301,7 @@ sap.ui.define([
                 this.preparePayLoad();
 
             },
-            preparePayLoad:function(){
+            preparePayLoad: function () {
                 var oPayLoad = this.getPayLoad();
                 var aRows = [];
                 if (this.selKeyVal === "idSOCreate") {
@@ -318,8 +318,8 @@ sap.ui.define([
 
                 // Clear Old Messages in Message View.
                 this.oMessageModel.setData([]);
-                
-                console.log("Post Payload:",oPayLoad);
+
+                console.log("Post Payload:", oPayLoad);
                 if (this.selKeyVal === "idSOCreate") {
                     oDataModel.create("/SalesKeySet", oPayLoad, {
                         success: this.onPostSuccess.bind(this),
@@ -338,15 +338,27 @@ sap.ui.define([
                 sap.ui.core.BusyIndicator.show();
                 this._import(e.getParameter("files") && e.getParameter("files")[0]);
                 this.getView().byId("idTestRunButt").setVisible(true);
-                this.getView().byId("idActualRunButt").setVisible(true);   
+                this.getView().byId("idActualRunButt").setVisible(true);
                 // this.getView().byId("idTabData").getBinding("rows");                         
                 this.getView().byId("idTabData").setVisible(true);
                 sap.ui.core.BusyIndicator.hide();
                 sap.m.MessageToast.show(this.getResourceBundle().getText("fileUploadSuccess"));
             },
+            getRowObjectFromExcel: function (oRow) {
+                
+                if (this.oUiModeModel.getProperty("/CreateMode")) {
+                    return this.oCreateModel.getRowObjectFromExcel(oRow);
+                }
+
+                if (this.oUiModeModel.getProperty("/ChangeMode")) {
+                    return this.oChangeModel.getRowObjectFromExcel(oRow);
+                }
+
+            },
             _import: function (file) {
                 var that = this;
                 var excelData = {};
+                let aExcelConvertedRows = [];
                 if (file && window.FileReader) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -357,11 +369,20 @@ sap.ui.define([
                         workbook.SheetNames.forEach(function (sheetName) {
                             // Here is your object for every sheet in workbook
                             excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+
+                            excelData.forEach(function (oRow) {
+                                let oConvertedRow = that.getRowObjectFromExcel(oRow);
+                                console.log("oConvertedRow:", oConvertedRow);
+                                aExcelConvertedRows.push(oConvertedRow);
+                            });
+
                             console.log("excelData:", excelData);
+                            console.log("aExcelConvertedRows:", aExcelConvertedRows);
                         });
                         // Setting the data to the local model 
                         that.localModel.setData({
-                            items: excelData
+                            // items: excelData
+                            items: aExcelConvertedRows
                         });
                         that.localModel.refresh(true);
                     };
@@ -380,7 +401,7 @@ sap.ui.define([
                 } else if (this.selKeyVal === "idSOChange") {
                     oSettings.fileName = "Download template_Change.xlsx";
                 }
-                
+
                 var oSheet = new Spreadsheet(oSettings);
                 oSheet.build().finally(function () {
                     oSheet.destroy();
@@ -422,10 +443,10 @@ sap.ui.define([
                 this._oBasicSearchField = new SearchField({
                     showSearchButton: false
                 });
-                
+
                 this._oValueHelpDialog = sap.ui.xmlfragment("com.sd.massmaint.parker.zsdmassmaint.view.ValueHelpDialogMultipleConditions", this);
                 this.getView().addDependent(this._oValueHelpDialog);
-               
+
                 this._oValueHelpDialog.setIncludeRangeOperations([
                     ValueHelpRangeOperation.EQ,
                     ValueHelpRangeOperation.BT,
@@ -441,7 +462,7 @@ sap.ui.define([
                     })
                 }]);
 
-                
+
                 this._oValueHelpDialog.getTableAsync().then(function (oTable) {
                     oTable.setModel(this.valueHelpModel);
                     oTable.setModel(this.oColModel, "columns");
@@ -469,10 +490,10 @@ sap.ui.define([
                 this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
                 this._oValueHelpDialog.open();
             },
-            onVHLineItem: function(){
+            onVHLineItem: function () {
 
                 this.pVHLineItem = sap.ui.xmlfragment("com.sd.massmaint.parker.zsdmassmaint.view.ValueHelpLineItemNumber"
-                    ,this);
+                    , this);
                 this.getView().addDependent(this.pVHLineItem);
                 this.pVHLineItem.setIncludeRangeOperations([
                     ValueHelpRangeOperation.EQ,
@@ -481,13 +502,13 @@ sap.ui.define([
                 ], "string");
 
                 this.pVHLineItem.setRangeKeyFields([{
-                            label: "Line Item Number",
-                            key: "ItemNumber",
-                            type: "string",
-                            typeInstance: new TypeString({}, {
-                                maxLength: 6
-                            })
-                        }]);
+                    label: "Line Item Number",
+                    key: "ItemNumber",
+                    type: "string",
+                    typeInstance: new TypeString({}, {
+                        maxLength: 6
+                    })
+                }]);
 
                 this.pVHLineItem.setTokens(this._oLineItemNum.getTokens());
                 this.pVHLineItem.open();
@@ -502,14 +523,14 @@ sap.ui.define([
                 this.pVHLineItem.close();
             },
 
-            onVHLineItemAfterClose: function(){
+            onVHLineItemAfterClose: function () {
                 this.pVHLineItem.destroy();
             },
 
             //****ScheduleLineItem Dialog.
-            onVHScheduleLineItem: function(){
+            onVHScheduleLineItem: function () {
                 this.pVHSchLineItem = sap.ui.xmlfragment("com.sd.massmaint.parker.zsdmassmaint.view.ValueHelpScheduleLineNumber"
-                    ,this);
+                    , this);
                 this.getView().addDependent(this.pVHSchLineItem);
                 this.pVHSchLineItem.setIncludeRangeOperations([
                     ValueHelpRangeOperation.EQ,
@@ -517,17 +538,17 @@ sap.ui.define([
                     ValueHelpRangeOperation.Contains
                 ], "string");
                 this.pVHSchLineItem.setRangeKeyFields([{
-                            label: "Line Item Number",
-                            key: "SchedLine",
-                            type: "string",
-                            typeInstance: new TypeString({}, {
-                                maxLength: 4
-                            })
-                        }]);
+                    label: "Line Item Number",
+                    key: "SchedLine",
+                    type: "string",
+                    typeInstance: new TypeString({}, {
+                        maxLength: 4
+                    })
+                }]);
                 this.pVHSchLineItem.setTokens(this._oSchLineNum.getTokens());
                 this.pVHSchLineItem.open();
 
-               
+
             },
             onVHScheduleLineItemOkPress: function (oEvent) {
                 var aTokens = oEvent.getParameter("tokens");
@@ -538,7 +559,7 @@ sap.ui.define([
                 this.pVHSchLineItem.close();
             },
 
-            onVHScheduleLineItemAfterClose: function(){
+            onVHScheduleLineItemAfterClose: function () {
                 this.pVHSchLineItem.destroy();
             },
 
@@ -594,7 +615,7 @@ sap.ui.define([
                         },
                     });
 
-               
+
             },
 
             _filterTable: function (oFilter) {
@@ -639,15 +660,15 @@ sap.ui.define([
             onValueHelpAfterClose: function () {
                 this._oValueHelpDialog.destroy();
             },
-            getSOFilters: function(aFilters,aTokens,sPath){
-               
+            getSOFilters: function (aFilters, aTokens, sPath) {
+
                 for (let index = 0; index < aTokens.length; index++) {
                     var oToken = aTokens[index];
                     var aCustomData = oToken.getCustomData();
                     var oFilvalue = aCustomData[0].getValue();
                     var tokenKey = aCustomData[0].getKey();
                     // var cOperator = oFilvalue.operation ? oFilvalue.operation : FilterOperator.EQ;
-                    var cOperator = this.getConstOperator(oFilvalue.operation,oFilvalue.exclude);
+                    var cOperator = this.getConstOperator(oFilvalue.operation, oFilvalue.exclude);
                     if (tokenKey === "range") {
                         aFilters.push(new Filter({
                             path: sPath,
@@ -668,20 +689,20 @@ sap.ui.define([
                 }
                 return aFilters;
             },
-            getConstOperator: function(Operator,bExclude){
+            getConstOperator: function (Operator, bExclude) {
                 if (Operator === FilterOperator.EQ && !bExclude) {
                     return FilterOperator.EQ;
-                } else if(Operator === FilterOperator.EQ && bExclude){
+                } else if (Operator === FilterOperator.EQ && bExclude) {
                     return FilterOperator.NE;
-                } else if(Operator === 'Empty' && !bExclude){
+                } else if (Operator === 'Empty' && !bExclude) {
                     return "";
-                } else if(Operator === 'Empty' && bExclude){
+                } else if (Operator === 'Empty' && bExclude) {
                     return FilterOperator.Any;
-                } else if(Operator === FilterOperator.BT && !bExclude){
+                } else if (Operator === FilterOperator.BT && !bExclude) {
                     return FilterOperator.BT;
-                } else if(Operator === FilterOperator.Contains && !bExclude){
+                } else if (Operator === FilterOperator.Contains && !bExclude) {
                     return FilterOperator.Contains
-                } else{
+                } else {
                     return FilterOperator.EQ;
                 }
 
@@ -694,18 +715,18 @@ sap.ui.define([
                     return;
                 }
                 console.log("SO aTokens", aTokens);
-                var aFilters =[];
-                var aFilters = this.getSOFilters(aFilters,aTokens,"Salesdocumentin");
+                var aFilters = [];
+                var aFilters = this.getSOFilters(aFilters, aTokens, "Salesdocumentin");
 
                 aTokens = this._oLineItemNum.getTokens();
                 console.log("_oLineItemNum aTokens", aTokens);
 
-                aFilters = this.getSOFilters(aFilters,aTokens,"ItemNumber");
+                aFilters = this.getSOFilters(aFilters, aTokens, "ItemNumber");
 
                 aTokens = this._oSchLineNum.getTokens();
                 console.log("_oSchLineNum aTokens", aTokens);
-                
-                aFilters = this.getSOFilters(aFilters,aTokens,"SchedLine");
+
+                aFilters = this.getSOFilters(aFilters, aTokens, "SchedLine");
 
 
                 aFilters = this.getNonKeyFilters(aFilters);
@@ -716,13 +737,13 @@ sap.ui.define([
                         success: function (result) {
                             // everything is OK 
                             console.log("Succes:", result);
-                            
+
                             var aBindRow = [];
 
                             var aHeaderToItemNav = result.results;
                             if (aHeaderToItemNav.length > 0) {
                                 MessageToast.show(this.getResourceBundle().getText("getSOSuccess"));
-                                this.getView().byId("idActualRunButt").setVisible(true);  
+                                this.getView().byId("idActualRunButt").setVisible(true);
                                 this.getView().byId("idTestRunButt").setVisible(true);
                             } else {
                                 // MessageToast.show(this.getResourceBundle().getText("noDataFound"));
@@ -740,7 +761,7 @@ sap.ui.define([
                             this.getView().getModel("localModel").setProperty("/items", aBindRow);
                             this.getView().byId("idTabData").setVisible(true);
                             sap.ui.core.BusyIndicator.hide();
-                            
+
                         }.bind(this),
                         error: function (err) {
                             // some error occuerd 
@@ -767,14 +788,14 @@ sap.ui.define([
                         })
                     });
                 }
-    
+
                 this.onNoDataDialogBox.open();
             },
             // Getting the non key filters:
-            getNonKeyFilters: function(aFilters){
-               
+            getNonKeyFilters: function (aFilters) {
+
                 var overallDeliveryStatus = this.getView().byId("orderOverAllDelvStatus").getSelectedKey();
-                if (overallDeliveryStatus && overallDeliveryStatus != undefined && overallDeliveryStatus !="") {
+                if (overallDeliveryStatus && overallDeliveryStatus != undefined && overallDeliveryStatus != "") {
                     aFilters.push(new Filter({
                         path: "OrdDelStat",
                         operator: FilterOperator.EQ,
@@ -784,7 +805,7 @@ sap.ui.define([
                 }
 
                 var lineItemOverallDeliveryStatus = this.getView().byId("lineItemOverAllDelvStatus").getSelectedKey();
-                if (lineItemOverallDeliveryStatus && lineItemOverallDeliveryStatus != undefined && lineItemOverallDeliveryStatus !="") {
+                if (lineItemOverallDeliveryStatus && lineItemOverallDeliveryStatus != undefined && lineItemOverallDeliveryStatus != "") {
                     aFilters.push(new Filter({
                         path: "ItmDelStat",
                         operator: FilterOperator.EQ,
@@ -795,7 +816,7 @@ sap.ui.define([
 
                 return aFilters;
             },
-           
+
             // Display the button type according to the message with the highest severity
             // The priority of the message types are as follows: Error > Warning > Success > Info
             buttonTypeFormatter: function () {
